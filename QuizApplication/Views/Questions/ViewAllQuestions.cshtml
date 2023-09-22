@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Question>
+
+@{
+    ViewBag.Title = "ViewAllQuestions";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+}
+
+<h2>View All Questions</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("QuestionText")
+        </th>
+        <th>
+            @Html.DisplayName("OptionA")
+        </th>
+        <th>
+            @Html.DisplayName("OptionB")
+        </th>
+        <th>
+            @Html.DisplayName("OptionC")
+        </th>
+        <th>
+            @Html.DisplayName("OptionD")
+        </th>
+        <th>
+            @Html.DisplayName("CorrectOption")
+        </th>
+        <th>
+            @Html.DisplayName("Mark")
+        </th>
+        <th>
+            @Html.DisplayName("NegativeMark")
+        </th>
+        <th>
+            @Html.DisplayName("Duration(secs)")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectOption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NegativeMark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary" title="Edit" style="font-size:xx-small">
+                    <i class="fas fa-pencil-alt" style="font-size:15px"></i> 
+                </a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info" title="Details" style="font-size:xx-small">
+                    <i class="fa fa-info-circle" style="font-size:15px"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" title="Delete" style="font-size:xx-small">
+                    <i class="fa fa-trash" style="font-size:15px"></i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+<p>@ViewBag.error</p>

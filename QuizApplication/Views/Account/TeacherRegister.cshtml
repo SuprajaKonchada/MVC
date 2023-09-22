@@ -1,0 +1,49 @@
+﻿@model Teacher
+@{
+    ViewBag.Title = "Teacher Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/register.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        
+        <div class="register-box col-md-7">
+            <h2>Teacher Registration</h2>
+            <br />
+            @using (Html.BeginForm("TeacherRegister", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label asp-for="TeacherName">Name:</label>
+                    <input asp-for="TeacherName" class="form-control" placeholder="Enter your name" />
+                    <span asp-validation-for="TeacherName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TeacherEmail">Email:</label>
+                    <input asp-for="TeacherEmail" class="form-control" placeholder="Enter your email" />
+                    <span asp-validation-for="TeacherEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TeacherPassword">Password:</label>
+                    <input asp-for="TeacherPassword" type="password" class="form-control" placeholder="Enter a strong password" />
+                    <span asp-validation-for="TeacherPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TeacherConfirmPassword">Confirm Password:</label>
+                    <input asp-for="TeacherConfirmPassword" type="password" class="form-control" placeholder="Rewrite the password"/>
+                    <span asp-validation-for="TeacherConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <br />
+                <div style="text-align:center">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            }
+            <p>Already have an account? <a href="@Url.Action("TeacherLogin", "Account")">Login here</a></p>
+        </div>
+        <div class="register-image col-md-7">
+            <img src="~/teacherstudent.jpg" class="img-fluid" alt="Image" />
+        </div>
+    </div>
+</div>

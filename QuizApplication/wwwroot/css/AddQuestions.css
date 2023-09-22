@@ -1,0 +1,6 @@
+﻿.btn-create {
+    color: #fff; /* White text color */
+    background-color: #007BFF; /* Blue background color */
+    border: none; /* Remove the button border */
+    padding: 10px 20px;
+}

@@ -1,0 +1,76 @@
+﻿@model List<QuizApplication.Models.StudentQuestionMarks>
+
+@{
+    ViewData["Title"] = "Student Question Marks";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+<style>
+    .exam-summary {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0 auto; /* Center the table horizontally */
+        text-align: center; /* Center text inside table cells horizontally */
+    }
+
+        .exam-summary td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+</style>
+<h2>Marksheet</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question Text</th>
+            <th>Option A</th>
+            <th>Option B</th>
+            <th>Option C</th>
+            <th>Option D</th>
+            <th>Selected Option</th>
+            <th>Correct Option</th>
+            <th>Marks Obtained</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Question.QuestionText</td>
+                <td>@item.Question.OptionA</td>
+                <td>@item.Question.OptionB</td>
+                <td>@item.Question.OptionC</td>
+                <td>@item.Question.OptionD</td>
+                <td>
+                    @if (item.SelectedOption == item.Question.CorrectOption)
+                    {
+                        <span style="color:green;"><b>@item.SelectedOption</b></span>
+                    }
+                    else
+                    {
+                        <span style="color:red;"><b>@item.SelectedOption</b></span>
+                    }
+                </td>
+                <td>@item.Question.CorrectOption</td>
+                <td>@item.MarksObtained</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="col-md-4 exam-summary">
+    <tr>
+        <td>Number of Correct Answers:</td>
+        <td style="color: green;"><b>@Model.Count(item => item.SelectedOption == item.Question.CorrectOption)</b></td>
+    </tr>
+    <tr>
+        <td>Number of Wrong Answers:</td>
+        <td style="color:red;"><b>@Model.Count(item => item.SelectedOption != item.Question.CorrectOption)</b></td>
+    </tr>
+    <tr>
+        <td>Total Marks Obtained:</td>
+        <td><b>@Model.Sum(item => item.MarksObtained)</b></td>
+    </tr>
+</table>
+

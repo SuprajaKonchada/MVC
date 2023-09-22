@@ -1,0 +1,38 @@
+﻿/* Style for the blue curve */
+.curve {
+    position: relative; /* Relative positioning for child elements */
+    background-color: transparent; /* Set background to transparent */
+    padding: 10px 50px 30px 20px;
+    min-height: 40vh; /* Minimum height to occupy the full viewport */
+    overflow: hidden; /* Hide overflow */
+}
+
+/* Style for the blue background */
+.blue-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 88%;
+    background-color: cornflowerblue;
+    border-radius: 0 0 50% 0; 
+}
+
+/* Style for the rectangular boxes */
+.list-group-item-action-box {
+    background-color: #fff;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+    padding: 7px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.list-group-item-action-box:hover {
+    background-color: #ccc;
+}
+
+.btn-active{
+    background-color: black;
+    color: white;
+}

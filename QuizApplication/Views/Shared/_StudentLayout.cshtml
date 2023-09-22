@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="text-right" style="padding: 2% 2% 0 0;">
+        <a href="@Url.Action("LogOut", "Account")" class="btn btn-danger">Log out</a>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

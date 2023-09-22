@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="container">
+            <div class="row" style="margin-top:80px;">
+                <div class="col-md-3">
+                    <div style="display: flex; align-items: center;">
+                        <label for="room">Enter Room Number</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" id="room" name="room" placeholder="Room Number" class="form-control" />
+                </div> 
+            </div>
+        </div>
+        <div style="justify-content:center;">
+            <input type="submit" value="Report" class="btn btn-dark btn-block mt-3" />
+        </div>
+
+
+    }
+    </br>
+    @if (@ViewBag.error != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Error ! </strong> @ViewBag.error
+        </div>
+    }
+</body>
+</html>

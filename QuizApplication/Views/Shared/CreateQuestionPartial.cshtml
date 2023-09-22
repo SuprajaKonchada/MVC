@@ -1,0 +1,91 @@
+﻿@model QuizApplication.Models.Question
+<form action="@Url.Action("AddQuestions", "Questions")" method="post">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="CategoryId" class="control-label col-md-4">Select the Category</label>
+            <div class="col-md-10">
+                <select asp-for="CategoryId" asp-items="@ViewBag.list" class="form-control">
+                    <option value="Category">--Select--</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <hr />
+        <div class="form-group">
+            <label asp-for="QuestionText" class="control-label col-md-2">Question</label>
+            <div class="col-md-10">
+                <input asp-for="QuestionText" class="form-control" />
+                <span asp-validation-for="QuestionText" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OptionA" class="control-label col-md-2">OptionA</label>
+            <div class="col-md-10">
+                <input asp-for="OptionA" class="form-control" />
+                <span asp-validation-for="OptionA" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OptionB" class="control-label col-md-2">OptionB</label>
+            <div class="col-md-10">
+                <input asp-for="OptionB" class="form-control" />
+                <span asp-validation-for="OptionB" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OptionC" class="control-label col-md-2">OptionC</label>
+            <div class="col-md-10">
+                <input asp-for="OptionC" class="form-control" />
+                <span asp-validation-for="OptionC" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OptionD" class="control-label col-md-2">OptionD</label>
+            <div class="col-md-10">
+                <input asp-for="OptionD" class="form-control" />
+                <span asp-validation-for="OptionD" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group" style="display:flex;">
+            <label asp-for="CorrectOption" class="control-label col-md-1">Correct Answer</label>
+            <div class="col-md-2">
+                <select asp-for="CorrectOption" class="form-control">
+                    <option value="" disabled selected>--Select--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+                <span asp-validation-for="CorrectOption" class="text-danger"></span>
+            </div>
+            <label asp-for="Mark" class="control-label col-md-1">Mark</label>
+            <div class="col-md-2">
+                <input asp-for="Mark" class="form-control" value=1 />
+                <span asp-validation-for="Mark" class="text-danger"></span>
+            </div>
+
+            <label asp-for="NegativeMark" class="control-label col-md-1">Negative Mark</label>
+            <div class="col-md-2">
+                <input asp-for="NegativeMark" class="form-control" value=0 />
+                <span asp-validation-for="NegativeMark" class="text-danger"></span>
+            </div>
+
+            <label asp-for="Duration" class="control-label col-md-1">Time Required(in seconds)</label>
+            <div class="col-md-2">
+                <input asp-for="Duration" class="form-control" value=30 />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+        </div>
+        <span class="text-danger">@ViewBag.successmsg</span>
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-create">Create</button>
+            </div>
+        </div>
+    </div>
+</form>

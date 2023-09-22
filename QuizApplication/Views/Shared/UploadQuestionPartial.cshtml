@@ -1,0 +1,32 @@
+﻿@model QuizApplication.Models.Question
+<form action="@Url.Action("UploadQuestions", "Questions")" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="CategoryId" class="control-label col-md-4">Select the Category</label>
+        <div class="col-md-10">
+            <select asp-for="CategoryId" asp-items="@ViewBag.list" class="form-control">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <label for="file" class="control-label col-md-2">Select Excel File:</label>
+        <div class="col-md-10">
+            <div class="custom-file">
+                <input type="file" id="file" name="file" class="custom-file-input" accept=".xlsx, .xls" required onchange="displayFileName(this)" />
+                <label class="custom-file-label" for="file">Choose file...</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Upload File</button>
+        </div>
+    </div>
+    <div class="form-group text-danger">
+        Note- Excel file should be in the below layout:
+        <img src="~/image/excellayout.png" />
+    </div>
+</form>
+
+

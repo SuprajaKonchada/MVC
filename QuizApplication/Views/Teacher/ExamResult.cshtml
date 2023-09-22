@@ -1,0 +1,54 @@
+﻿@model IEnumerable<QuizApplication.Models.Report>
+
+@{
+    ViewData["Title"] = "ExamResult";
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    ;
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+<style>
+    tbody tr:hover {
+        background-color: lightgray; 
+    }
+</style>
+<h1>ExamResult</h1>
+<table class="table">
+    <button id="download-csv" style="background-color: lightslategray; float: right;"><i class="fa fa-download" aria-hidden="true"></i> Download Report</button>
+    <thead>
+        <tr>
+            <th colspan="2">
+                @ViewBag.CategoryName
+            </th>
+        </tr>
+    </thead>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th>
+                @Html.DisplayName("Email")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.score)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr style="cursor: pointer;" onclick="location.href='@Url.Action("GetStudentMarks", "Teacher", new { StudentId = item.Student.Id })'">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.StudentEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.score)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/js/filedownload.js" asp-append-version="true"></script>

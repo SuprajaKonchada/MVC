@@ -1,0 +1,52 @@
+﻿@model Student
+@{
+    ViewBag.Title = "Student Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/register.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <!-- Left side with the image -->
+        <div class="register-image col-md-7">
+            <img src="~/teacherstudent.jpg" class="img-fluid" alt="Image" />
+        </div>
+
+        <!-- Right side with the registration form -->
+        <div class="register-box col-md-6">
+            <form method="post">
+                <h2>Student Registration</h2>
+                <br />
+                @Html.AntiForgeryToken()
+                
+                <div class="form-group">
+                    <label asp-for="StudentName">Name:</label>
+                    <input asp-for="StudentName" class="form-control" placeholder="Enter your name" />
+                    <span asp-validation-for="StudentName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="StudentEmail">Email:</label>
+                    <input asp-for="StudentEmail" class="form-control" placeholder="Enter your email" />
+                    <span asp-validation-for="StudentEmail" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="StudentPassword">Password:</label>
+                    <input asp-for="StudentPassword" type="password" class="form-control" placeholder="Enter a strong password" />
+                    <span asp-validation-for="StudentPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="StudentConfirmPassword">Confirm Password:</label>
+                    <input asp-for="StudentConfirmPassword" type="password" class="form-control" placeholder="Rewrite the password"/>
+                    <span asp-validation-for="StudentConfirmPassword" class="text-danger"></span>
+                </div>
+                <br />
+                <div style="text-align:center">
+                     <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                <p>Already have an account? <a href="@Url.Action("StudentLogin", "Account")">Login here</a></p>
+            </form>
+        </div>
+    </div>
+</div>

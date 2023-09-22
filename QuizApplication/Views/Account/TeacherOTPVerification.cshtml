@@ -1,0 +1,39 @@
+﻿@model string
+@{
+    ViewBag.Title = "Teacher OTP Verification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/login.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <!-- Right side with the OTP verification form -->
+        <div class="login-form col-md-5">
+            <h2>OTP Verification</h2>
+            <br />
+            @using (Html.BeginForm("TeacherOTPVerification", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="enteredOtp">Enter OTP:</label>
+                    <input type="text" id="enteredOtp" name="enteredOtp" class="form-control" placeholder="Enter OTP" />
+                </div>
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-danger mt-3">
+                        @ViewBag.ErrorMessage
+                        <div>
+                            <span>Resend the OTP?</span>
+                            <a href="@Url.Action("TeacherForgotPassword", "Account")">Click Here</a>
+                        </div>                        
+                    </div>
+                }
+                <br />
+                <div style="text-align:center">
+                    <button type="submit" class="btn btn-primary">Verify OTP</button>
+                </div>
+            }
+        </div>
+        <!-- Left side with the image -->
+        <div class="login-image col-md-7"><img src="~/teacherstudent.jpg" class="img-fluid" alt="Image" /></div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/css/_teacherlayout.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3" style="padding-left:0">
+                <div class="curve">
+                    <div class="blue-background"></div>
+                    <div class="list-group">
+                        <a href="@Url.Action("AddCategory", "Category")" class="list-group-item list-group-item-action-box @((ViewContext.RouteData.Values["controller"].ToString() == "Category" && ViewContext.RouteData.Values["action"].ToString() == "AddCategory") ? "btn-active" : "")" style="text-decoration:none">
+                            Add Category
+                        </a>
+                        <a href="@Url.Action("AddQuestions", "Questions")" class="list-group-item list-group-item-action-box @((ViewContext.RouteData.Values["controller"].ToString() == "Questions" && ViewContext.RouteData.Values["action"].ToString() == "AddQuestions") ? "btn-active" : "")" style="text-decoration:none">
+                            Add Questions
+                        </a>
+                        <a href="@Url.Action("Report", "Teacher")" class="list-group-item list-group-item-action-box @((ViewContext.RouteData.Values["controller"].ToString() == "Teacher" && ViewContext.RouteData.Values["action"].ToString() == "Report") ? "btn-active" : "")" style="text-decoration:none">
+                            Report
+                        </a>
+                        <a href="@Url.Action("LogOut", "Account")" class="list-group-item list-group-item-action-box @((ViewContext.RouteData.Values["controller"].ToString() == "Account" && ViewContext.RouteData.Values["action"].ToString() == "LogOut") ? "btn-active" : "")" style="text-decoration:none">
+                            LogOut
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>

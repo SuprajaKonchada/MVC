@@ -1,0 +1,114 @@
+﻿@model QuizApplication.Models.Question
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>StartQuiz</title>
+    <link href="~/css/startquiz.css" rel="stylesheet" />
+    
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+                <div class="col-lg-6 col-md-8 col-sm-10">
+                    <div class="quiz-box">
+                        <div class="question-text">
+                            @Html.DisplayFor(x => x.QuestionText)
+                        </div>
+                        <div class="option-label">
+                            <label class="option-input">
+                                @Html.RadioButtonFor(x => x.OptionA, Model.Id) @Model.OptionA
+                            </label>
+                        </div>
+                        <div class="option-label">
+                            <label class="option-input">
+                                @Html.RadioButtonFor(x => x.OptionB, Model.Id) @Model.OptionB
+                            </label>
+                        </div>
+                        <div class="option-label">
+                            <label class="option-input">
+                                @Html.RadioButtonFor(x => x.OptionC, Model.Id) @Model.OptionC
+                            </label>
+                        </div>
+                        <div class="option-label">
+                            <label class="option-input">
+                                @Html.RadioButtonFor(x => x.OptionD, Model.Id) @Model.OptionD
+                            </label>
+                        </div>
+
+                        <div style="display:none">
+                            @Html.TextBoxFor(x => x.CorrectOption)
+                        </div>
+                        <div style="text-align:center";>
+                            <div class="submit-btn">
+                                <button type="submit" class="btn btn-success" id="submitBtn">Submit</button>
+                                <a href="@Url.Action("EndExam", "Student")" class="btn btn-danger" title="Current Question will not be saved">End Exam</a>
+                                <p id="countdown"></p>
+                            </div>
+                        </div>
+                    </div>
+         
+                    <div style="text-align: center; margin-top: 15px;">
+                        <p>Question @ViewBag.QuestionNumber of @ViewBag.Totalquestions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <script>
+        // Function to update the remaining time and automatically click the "End Exam" button
+        function updateTimer() {
+            let countdownElement = document.getElementById('countdown');
+
+            let initialQuestionDuration = parseInt('@ViewBag.QuestionDuration') * 1000; // Convert to milliseconds
+            let remainingTime = initialQuestionDuration - elapsedMilliseconds;
+
+            // Function to update the countdown
+            function updateCountdown() {
+                let seconds = Math.floor(remainingTime / 1000);
+                let minutes = Math.floor(seconds / 60);
+                seconds %= 60;
+
+                // Display the remaining time in the format MM:SS
+                countdownElement.textContent = `Time remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                remainingTime -= 1000;
+
+                // If the remaining time reaches 0, click the "End Exam" button
+                if (remainingTime < 0) {
+                    clearInterval(timerInterval); // Stop the countdown
+                    autoSubmit();
+                }
+            }
+
+            // Initial update
+            updateCountdown();
+            let timerInterval = setInterval(updateCountdown, 1000);
+        }
+
+        // Function to automatically click the "End Exam" button
+        function autoSubmit() {
+            let endSubmit = document.getElementById('submitBtn');
+            endSubmit.click();
+        }
+        let elapsedMilliseconds = 0;
+        let initialTime = new Date();
+
+        // Add an event listener for form submission to calculate elapsed time
+        let formElement = document.querySelector('form');
+        formElement.addEventListener('submit', function () {
+            let currentTime = new Date();
+            elapsedMilliseconds += currentTime - initialTime;
+        });
+
+        setTimeout(updateTimer, 100); // Delay by 100msec to start the timer
+    </script>
+</body>
+</html>

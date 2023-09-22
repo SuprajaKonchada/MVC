@@ -1,0 +1,36 @@
+﻿@model Question;
+@{
+    ViewBag.Title = "AddQuestion";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose Entry Type</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/AddQuestions.js" asp-append-version="true"></script>
+    <link href="~/css/addquestions.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="form-group">
+        <label class="radio-inline">
+            <input type="radio" name="entryType" value="create" id="createRadio" checked> Create
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="entryType" value="upload" id="uploadRadio"> Upload
+        </label>
+    </div>
+    <div class="form-container" style="display: flex;" text-center>
+        <div id="createForm" style="flex:1;">
+            <h2>Add Questions Manually</h2>
+            @Html.Partial("CreateQuestionPartial")
+        </div>
+        <div id="uploadForm" style="flex:1;display: none;">
+            <h2>Upload File</h2>
+             @Html.Partial("UploadQuestionPartial")
+        </div>
+    </div>
+    <p>@ViewBag.error</p>
+</body>
+</html>
